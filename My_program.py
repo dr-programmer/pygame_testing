@@ -118,7 +118,7 @@ while True:
         direction1 = MOVE_LEFT
 
 
-    if ((x, y) == (x1, y1)):
+    if (x+30 > x1 and x < x1+36 and y+35 > y1 and y < y1+42):
         exit()
 
     screen.blit(background, (0, 0))
