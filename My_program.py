@@ -26,6 +26,8 @@ direction1 = 0
 
 level = 0.1
 
+points = 0
+
 while True:
     
     for event in pygame.event.get():
@@ -123,9 +125,16 @@ while True:
         level += 0.1
         x1 = random.randint(0, 500)
         y1 = random.randint(0, 500)
+        points += round(10*level)
         #exit()
 
+    font = pygame.font.Font('freesansbold.ttf', 22)
+    text = font.render("Score: " + str(points), True, (255,255,255), (0,0,0))
+    textRect = text.get_rect()
+    textRect.center = (60, 30)
+
     screen.blit(background, (0, 0))
+    screen.blit(text, textRect)
     screen.blit(player1, (x1, y1))
     screen.blit(player, (x, y))
     pygame.display.update()
