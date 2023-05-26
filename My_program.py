@@ -24,7 +24,8 @@ MOVE_DOWN = 4
 direction = 0
 direction1 = 0
 
- 
+level = 0.1
+
 while True:
     
     for event in pygame.event.get():
@@ -80,22 +81,22 @@ while True:
         if(x1<=0):
             x1=0
         else:
-            x1-=4.3
+            x1-=4.3*level
     elif(direction1 == MOVE_RIGHT):
         if(x1>=464):
             x1=464
         else:
-            x1+=4.3
+            x1+=4.3*level
     elif(direction1 == MOVE_UP):
         if(y1<=0):
             y1=0
         else:
-            y1-=4.3
+            y1-=4.3*level
     elif(direction1 == MOVE_DOWN):
         if(y1>=458):
             y1=458
         else:
-            y1+=4.3
+            y1+=4.3*level
 
     randomizer = random.randint(1,40000)
 
@@ -118,8 +119,11 @@ while True:
         direction1 = MOVE_LEFT
 
 
-    if (x+30 > x1 and x < x1+36 and y+35 > y1 and y < y1+42):
-        exit()
+    if (x+30 > x1 and x < x1+25 and y+35 > y1 and y < y1+35):
+        level += 0.1
+        x1 = random.randint(0, 500)
+        y1 = random.randint(0, 500)
+        #exit()
 
     screen.blit(background, (0, 0))
     screen.blit(player1, (x1, y1))
