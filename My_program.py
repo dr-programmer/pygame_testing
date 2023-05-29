@@ -112,13 +112,25 @@ while True:
         direction1 = MOVE_DOWN
 
     if direction == MOVE_DOWN:
-        direction1 = MOVE_UP
+        if(y1<=0):
+            y1=0
+        else:
+            y1-=4.3*level
     if direction == MOVE_UP:
-        direction1 = MOVE_DOWN
+        if(y1>=458):
+            y1=458
+        else:
+            y1+=4.3*level
     if direction == MOVE_LEFT:
-        direction1 = MOVE_RIGHT
+        if(x1>=464):
+            x1=464
+        else:
+            x1+=4.3*level
     if direction == MOVE_RIGHT:
-        direction1 = MOVE_LEFT
+        if(x1<=0):
+            x1=0
+        else:
+            x1-=4.3*level
 
 
     if (x+30 > x1 and x < x1+25 and y+35 > y1 and y < y1+35):
@@ -136,5 +148,11 @@ while True:
     screen.blit(background, (0, 0))
     screen.blit(text, textRect)
     screen.blit(player1, (x1, y1))
+    if points > 100:
+        screen.blit(player1, (464-x1, 458-y1))
+    if points > 300:
+        screen.blit(player1, (x1, 458-y1))
+    if points > 600:
+        screen.blit(player1, (464-x1, y1))
     screen.blit(player, (x, y))
     pygame.display.update()
