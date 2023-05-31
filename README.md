@@ -6,4 +6,8 @@
  - Every time the difficulty is raised
  - Sometimes you will have to run!
 ## Controls
- - Use WASD for movement
+ - Use arrow keys for movement
+ - Use space to dash
+## Assets
+ - pacman.png
+ - burger.png

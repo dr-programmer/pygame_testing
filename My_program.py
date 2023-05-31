@@ -2,6 +2,7 @@ import pygame
 import random
 from pygame.locals import *
 from sys import exit
+import time
 
 background_image = 'black.jpg'
 boat = 'pacman.png'
@@ -28,7 +29,16 @@ level = 0.1
 
 points = 0
 
+DASH = 3
+readyDash = False
+
 while True:
+
+    currentTime = time.time()
+    if points >= 10:
+        readyDash = True
+    else:
+        readyDash = False
     
     for event in pygame.event.get():
          
@@ -38,7 +48,7 @@ while True:
         if event.type == KEYDOWN:
             if event.key == K_LEFT:
                 direction = MOVE_LEFT
-            elif event.key == K_RIGHT:
+            if event.key == K_RIGHT:
                 direction = MOVE_RIGHT
             if event.key == K_UP:
                 direction = MOVE_UP
@@ -46,11 +56,16 @@ while True:
                 direction = MOVE_DOWN
             if event.key == K_ESCAPE:
                 exit()
+            if event.key == K_SPACE and readyDash == True:
+                DASH = 10
+                points -= 10
+            else:
+                DASH = 3
                  
         elif event.type == KEYUP:
             if event.key == K_LEFT:
                 direction = 0
-            elif event.key == K_RIGHT:
+            if event.key == K_RIGHT:
                 direction = 0
             if event.key == K_UP:
                 direction=0
@@ -62,22 +77,22 @@ while True:
         if(x<=0):
             x=0
         else:
-            x-=0.3
+            x-=0.3*DASH
     elif(direction == MOVE_RIGHT):
         if(x>=464):
             x=464
         else:
-            x+=0.3
+            x+=0.3*DASH
     elif(direction == MOVE_UP):
         if(y<=0):
             y=0
         else:
-            y-=0.3
+            y-=0.3*DASH
     elif(direction == MOVE_DOWN):
         if(y>=458):
             y=458
         else:
-            y+=0.3
+            y+=0.3*DASH
 
     if(direction1 == MOVE_LEFT):
         if(x1<=0):
